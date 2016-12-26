@@ -1,0 +1,25 @@
+with tf.Session() as sess:
+    sess.run(tf.global_variables_initializer())
+    num_examples = len(X_train)    
+    try:
+        saver
+    except NameError:
+        saver = tf.train.Saver()
+
+    print("Training...")
+    print()
+    for i in range (EPOCHS):
+        X_train_epoch_run, y_train_epoch_run = X_train[]
+        X_train, y_train = shuffle(X_train, y_train)
+        for offset in range(0, num_examples, BATCH_SIZE):
+            end = offset + BATCH_SIZE
+            batch_x, batch_y = X_train[offset:end], y_train[offset:end]
+            loss = sess.run(training_operation, feed_dict={x: batch_x, y: batch_y})
+            
+        validation_loss, validation_accuracy = evaluate(X_validation, y_validation)
+        print("EPOCH {} ...".format(i+1))
+        print("Validation Loss     = {:.3f}".format(validation_loss))
+        print("Validation Accuracy = {:.3f}".format(validation_accuracy))
+        saver.save(sess, '.\lenet',global_step=i)
+        print("Model saved ", i)
+        print()
